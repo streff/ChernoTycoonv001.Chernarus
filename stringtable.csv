@@ -1,0 +1,21 @@
+LANGUAGE,"English","Czech","German","Polish","Russian","French","Spanish","Italian"
+
+// Shopping.
+STR_SPON_SHOP_ACTION, "Browse Shop"
+
+STR_SPON_SHOP_DEFAULT_NAME, "Shop"
+STR_SPON_SHOP_BUY_BUTTON, "Buy"
+STR_SPON_SHOP_SELL_BUTTON, "Sell"
+STR_SPON_SHOP_PLAYER_TITLE, "Gear"
+
+// Banking.
+STR_SPON_BANK_ACTION, "Bank"
+
+STR_SPON_BANK_DEFAULT_NAME, "Bank"
+STR_SPON_BANK_WITHDRAW_BUTTON, "Withdraw"
+STR_SPON_BANK_DEPOSIT_BUTTON, "Deposit"
+
+// Shopping & Banking.
+STR_SPON_MONEY_CLOSE_BUTTON, "Close"
+
+STR_SPON_MONEY_NUMBER_SEPERATOR, ",", ".", ".", ".", ".", ".", ".", "."

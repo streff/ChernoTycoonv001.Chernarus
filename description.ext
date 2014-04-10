@@ -1,0 +1,39 @@
+#include "R3F_ARTY_AND_LOG\desc_include.h"
+class RscTitles
+{
+#include "R3F_ARTY_AND_LOG\desc_rsct_include.h"
+};
+
+
+class Header
+{
+	gameType = COOP;          
+	minPlayers = 1;
+	maxPlayers = 8;
+};
+
+
+class CfgFunctions
+{
+	file = "scripts";
+	class TOT
+	{
+		class functions
+		{
+			class MPAddactionParam 		{description="Add multiplayer addaction with some parameters"; file="scripts\tot\functions\fn_MPAddactionParam.sqf";};
+			class MPAddactionParamCond 		{description="Add multiplayer addaction with some parameters"; file="scripts\tot\functions\fn_MPAddactionParamCond.sqf";};
+			class MPAddactionNoParam	{description="Add multiplayer addaction with no parameters"; file="scripts\tot\functions\fn_MPAddactionNoParam.sqf";};
+			class MPRemoveaction		{description="Remove all addactions from unit"; file="scripts\tot\functions\fn_MPRemoveaction.sqf";};
+		};
+	};
+	
+};
+
+respawn = 3;
+respawnDelay = 5;
+corpseRemovalMinTime = 600; //seconds
+corpseRemovalMaxTime = 1200; //seconds = 20min
+wreckRemovalMinTime = 300; //seconds
+wreckRemovalMaxTime = 1200; //seconds
+
+

@@ -1,0 +1,102 @@
+Heli_Heavy01_H
+	Heavy (Civil) 	Helicopters (Heavy) 	Civilian 	HSim_Civ_US
+Heli_Heavy01_Vrana_H
+	Vrana Corp Industrial 	Helicopters (Heavy) 	Civilian 	HSim_Civ_Story
+Heli_Heavy01_Wave_H
+	Larkin Aviation 	Helicopters (Heavy) 	Civilian 	HSim_Civ_Story
+IND_Heli_Heavy01_H
+	ION (Black) 	Helicopters (Heavy) 	Independent 	HSim_Ind_PC
+Heli_Heavy01_Military_H
+	Heavy (Military) 	Helicopters (Heavy) 	BLUFOR 	HSim_BLUFOR_USArmy
+IND_Heli_Heavy01_Military_H
+	ION (Armed) 	Helicopters (Heavy) 	Independent 	HSim_Ind_PC
+Heli_Heavy01_Luxury_H
+	Heavy (Luxury) 	Helicopters (Heavy) 	Civilian 	HSim_Civ_US
+Heli_Heavy01_Luxury_Vrana_H
+	Vrana Corp Executive 	Helicopters (Heavy) 	Civilian 	HSim_Civ_Story
+Ind_Heli_Heavy01_Luxury_H
+	ION (VIP) 	Helicopters (Heavy) 	Independent 	HSim_Ind_PC
+Heli_Heavy01_Luxury_President_H
+	Heavy (Marine One) 	Helicopters (Heavy) 	Civilian 	HSim_Civ_ES
+Heli_Light01_H
+	Light 	Helicopters (Light) 	Civilian 	HSim_Civ_US
+Heli_Light01_Vrana_H
+	Vrana Corp Executive 	Helicopters (Light) 	Civilian 	HSim_Civ_Story
+Heli_Light01_Wave_H
+	Larkin Aviation 	Helicopters (Light) 	Civilian 	HSim_Civ_Story
+Heli_Light01_blueline_H
+	Light (blueline) 	Helicopters (Light) 	Civilian 	HSim_Civ_US
+Heli_Light01_digital_H
+	Light (digital times) 	Helicopters (Light) 	Civilian 	HSim_Civ_US
+Heli_Light01_elliptical_H
+	Light (elliptical) 	Helicopters (Light) 	Civilian 	HSim_Civ_US
+Heli_Light01_furious_H
+	Light (furious) 	Helicopters (Light) 	Civilian 	HSim_Civ_US
+Heli_Light01_graywatcher_H
+	Light (greywatcher) 	Helicopters (Light) 	Civilian 	HSim_Civ_US
+Heli_Light01_jeans_H
+	Light (jeans) 	Helicopters (Light) 	Civilian 	HSim_Civ_US
+Heli_Light01_shadow_H
+	Light (shadow) 	Helicopters (Light) 	Civilian 	HSim_Civ_US
+Heli_Light01_sunset_H
+	Light (sunset) 	Helicopters (Light) 	Civilian 	HSim_Civ_US
+Heli_Light01_wasp_H
+	Light (wasp) 	Helicopters (Light) 	Civilian 	HSim_Civ_US
+Heli_Light01_sheriff_H
+	Light (Sheriff Dept.) 	Helicopters (Light) 	Civilian 	HSim_Civ_ES
+Heli_Light01_TimeTrial_H
+	Light (Time Trial) 	Helicopters (Light) 	Civilian 	HSim_Civ_Story
+Heli_Light01_OLD_H
+	Training Helicopter 	Helicopters (Light) 	Civilian 	HSim_Civ_Story
+Heli_Light01_ION_H
+	Light (ION) 	Helicopters (Light) 	Independent 	HSim_Ind_PC
+CIV_Heli_Light01_ION_H
+	ION Tactical 	Helicopters (Light) 	Civilian 	HSim_Civ_Story
+Heli_Light01_Military_H
+	Light (Military) 	Helicopters (Light) 	BLUFOR 	HSim_BLUFOR_USArmy
+IND_Heli_Light01_Military_H
+	ION (Armed) 	Helicopters (Light) 	Independent 	HSim_Ind_PC
+Heli_Medium01_H
+	Medium (Civil) 	Helicopters (Medium) 	Civilian 	HSim_Civ_US
+Heli_Medium01_Wave_H
+	Larkin Aviation 	Helicopters (Medium) 	Civilian 	HSim_Civ_Story
+IND_Heli_Medium01_H
+	ION (Black) 	Helicopters (Medium) 	Independent 	HSim_Ind_PC
+Heli_Medium01_Flamingo_H
+	Medium (flamingo) 	Helicopters (Medium) 	Civilian 	HSim_Civ_US
+Heli_Medium01_Frostfire_H
+	Medium (frostfire) 	Helicopters (Medium) 	Civilian 	HSim_Civ_US
+Heli_Medium01_Parrot_H
+	Medium (parrot) 	Helicopters (Medium) 	Civilian 	HSim_Civ_US
+Heli_Medium01_Coastguard_H
+	Medium (coastguard) 	Helicopters (Medium) 	Civilian 	HSim_Civ_ES
+Heli_Medium01_Red_H
+	Medium (red) 	Helicopters (Medium) 	Civilian 	HSim_Civ_US
+Heli_Medium01_Redlines_H
+	Medium (redlines) 	Helicopters (Medium) 	Civilian 	HSim_Civ_US
+Heli_Medium01_Shark_H
+	Medium (shark) 	Helicopters (Medium) 	Civilian 	HSim_Civ_US
+Heli_Medium01_Sun_H
+	Medium (sun) 	Helicopters (Medium) 	Civilian 	HSim_Civ_US
+Heli_Medium01_Twilight_H
+	Medium (twilight) 	Helicopters (Medium) 	Civilian 	HSim_Civ_US
+Heli_Medium01_Wasp_H
+	Medium (wasp) 	Helicopters (Medium) 	Civilian 	HSim_Civ_US
+Heli_Medium01_Sheriff_H
+	Medium (Sheriff Dept.) 	Helicopters (Medium) 	Civilian 	HSim_Civ_ES
+Heli_Medium01_FLIR_H
+	Medium (FLIR) 	Helicopters (Medium) 	Civilian 	HSim_Civ_ES
+Heli_Medium01_Luxury_H
+	Medium (Luxury) 	Helicopters (Medium) 	Civilian 	HSim_Civ_US
+Heli_Medium01_Luxury_Vrana_H
+	Vrana Corp Executive 	Helicopters (Medium) 	Civilian 	HSim_Civ_Story
+Heli_Medium01_Medic_H
+	Medium (Air Ambulance) 	Helicopters (Medium) 	Civilian 	HSim_Civ_ES
+Heli_Medium01_Military_H
+	Medium (Military) 	Helicopters (Medium) 	BLUFOR 	HSim_BLUFOR_USArmy
+IND_Heli_Medium01_Military_H
+	ION (Armed) 	Helicopters (Medium) 	Independent 	HSim_Ind_PC
+TK_Heli_Medium01_Military_H
+	Medium (Military) 	Helicopters (Medium) 	OPFOR 	HSim_OPFOR_Army
+Heli_Medium01_Veteran_H
+	Veteran Transport 	Helicopters (Medium) 	Civilian 	HSim_Civ_Story 
