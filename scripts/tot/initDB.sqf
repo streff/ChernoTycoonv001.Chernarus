@@ -15,9 +15,11 @@ TOT_playerData = _tot_db select 0;
 publicVariable "TOT_playerData";
 TOT_vehicleData = _tot_db select 1;
 publicVariable "TOT_vehicleData";
-TOT_objectData = _tot_db select 2;
+TOT_goodsData = _tot_db select 2;
+publicVariable "TOT_goodsData";
+TOT_objectData = _tot_db select 3;
 publicVariable "TOT_objectData";
-TOT_industryData = _tot_db select 3;
+TOT_industryData = _tot_db select 4;
 
 //set up individual players
 {
@@ -46,10 +48,6 @@ call compile format["publicVariable 'TOT_%1_lastDir';", _playerName];
 
 //set up vehicles
 {
-
-//stock init
-
-
 //read name of object, and get its data
 _veh = _x select 0;
 _vehData = _x select 1;
@@ -62,6 +60,8 @@ _pos = _vehData select 3;
 _dir = _vehData select 4;
 _locked = _vehData select 5;
 _owner = _vehData select 6;
+
+//possible init lines
 _stockInit = format["this setVariable['_owner','%1']; this execVM 'scripts\tot\vehicles\vehicleLock.sqf';", _owner];
 _heliInit = format ["[this] execVM 'scripts\NEO_slingload\sl_init.sqf'; this execVM 'scripts\OSMO_interaction\OSMO_interaction_init.sqf';", _owner];
 
@@ -78,6 +78,8 @@ _vehNumber = _forEachIndex;
 _varName = format["Vehicle_%1", _vehNumber];
 _xveh setVehicleVarName _varName;
 _xveh Call Compile Format ["%1=_this ; PublicVariable ""%1""", _varName];
+
+//ifHeli hack - if heli set heli init, if not set stock and passed init
 _isHeli = _xveh isKindOf "Helicopter";
 _fullInit = "";
 if (_isHeli) then {
@@ -89,6 +91,33 @@ _xveh setVehicleInit _fullInit;
 processInitCommands;
 
 } forEach TOT_vehicleData;
+
+//set up goods
+{
+_goods = _x select 0;
+_goodsData = _x select 1;
+
+_useType = _goodsData select 0;
+_pos = _goodsData select 1;
+_dir = _goodsData select 2;
+_goodsInfo = _goodsData select 3;
+
+_xgoods = createVehicle[_useType, _pos,[], 0,"NONE"];
+_xgoods setDir _dir;
+_xgoods setVariable ["_goodsInfo", _goodsInfo, true];
+
+//add addaction for player to be able to read box tags
+_xgoods addAction["Read Shipping Label", "scripts\tot\readBoxes.sqf"];
+						
+						
+//add addaction designate pickup
+_xgoods addAction["Designate for Pickup", "scripts\tot\ai\designatePickup.sqf"];
+
+//rename the old entry in the db to the new goods name
+_x set[0, _xgoods];
+
+} forEach TOT_goodsData;
+
 
 //set up objects
 {

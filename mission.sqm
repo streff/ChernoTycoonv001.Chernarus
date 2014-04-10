@@ -834,7 +834,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={4753.0356,8.7785702,2561.2554};
+					position[]={1868.5304,4.9302878,2120.5657};
 					id=267;
 					side="GUER";
 					vehicle="Pilot_Random_H_DLC1";

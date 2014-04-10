@@ -31,7 +31,8 @@ _mprice = _priceOut * 50;
 _lprice = _priceOut * 100;
 
 
-
+//sleep for a bit
+sleep random 3;
 
 //production iteration counter
 _prodIterator = 0;
@@ -40,18 +41,7 @@ _prodIterator = 0;
  // initialise loop  ------------------  initialise loop ------------------- initialise loop -------------initialise loop   
  while {true} do {
  
-//singleplayer version
-//if (!isDedicated) then {
-//ditch old actions to remove prices
-// Remove all except first actions from the unit
-//	_action =_producer addAction["foo", "foo.sqf"];
-//	while {_action >= 1} do	{
-//	_producer removeAction _action;
-//	_action = _action - 1;
-//	};
-//} else {
 [[_producer], "TOT_fnc_MPRemoveaction",false, true] call BIS_fnc_MP; 
-//};
  
  
 //set prices for current stock levels ----  run once to initialise prices then script loops production  --------------------------------------------------------------
@@ -106,27 +96,12 @@ _newPrice = _basePriceOut;
 
 						
 						//add interaction with producer to create goods / perform sale with new prices - single player version
-						//if ((isServer) and (!isDedicated)) then {
-						//_producer addAction[format["Buy %1 Crate - $%2", _produceType, _sprice], "scripts\tot\createGoods.sqf", [_boxType, _loadbay, _priceOut, _producer, _basePriceOut, 0]];
-						//_producer addAction[format["Buy %1 Pallet - $%2", _produceType, _mprice], "scripts\tot\createGoods.sqf", [_boxType, _loadbay, _priceOut, _producer, _basePriceOut, 1]];
-						//_producer addAction[format["Buy %1 Container - $%2", _produceType, _lprice], "scripts\tot\createGoods.sqf", [_boxType, _loadbay, _priceOut, _producer, _basePriceOut, 2]];
-						//_producer addAction["Current Stock", "scripts\tot\tellStock.sqf"];
-						
-						//} else {
-						
+				
 						[[_producer, "scripts\tot\startDelivery.sqf", "Deliver Goods", [_producer, _deliverbay, _acceptsType, _acceptsGoods]], "TOT_fnc_MPAddactionParam", nil, true, true] spawn BIS_fnc_MP;
 						[[_producer, "scripts\tot\createGoods.sqf", format["Buy %1 Crate - $%2", _produceType, _sprice], [_boxType, _loadbay, _priceOut, _producer, _basePriceOut, 0]], "TOT_fnc_MPAddactionParam", nil, true, true] spawn BIS_fnc_MP;
 						[[_producer, "scripts\tot\createGoods.sqf", format["Buy %1 Pallet - $%2", _produceType, _mprice], [_boxType, _loadbay, _priceOut, _producer, _basePriceOut, 1]], "TOT_fnc_MPAddactionParam", nil, true, true] spawn BIS_fnc_MP;
 						[[_producer, "scripts\tot\createGoods.sqf", format["Buy %1 Container - $%2", _produceType, _lprice], [_boxType, _loadbay, _priceOut, _producer, _basePriceOut, 2]], "TOT_fnc_MPAddactionParam", nil, true, true] spawn BIS_fnc_MP;
 						[[_producer, "scripts\tot\tellStock.sqf", "Current Stock"], "TOT_fnc_MPAddactionNoParam", nil, true, true] spawn BIS_fnc_MP;
-
-
-						//};  //end single player / editor version
-
-
-
-
-
 
 
  //_producer globalchat format["%1 sleeping", _producer];
@@ -162,13 +137,6 @@ if (_materials >= 50) then {
 					missionNamespace setVariable [_initVars, _industryVars];
 					publicVariable _initVars;
 					_prodIterator = _prodIterator + (10 * _prodRate);
-		
-		
-		//todo: adjust buy price for mats to match current stock levels - base (lowest) price at _maxAvailable level but no limit on storage
-		
-		
-		
-		
 			
 			//enough stuff made - ready to add to 'available' and reset iterator to 0
 					if (_prodIterator > 100) then {
