@@ -13,13 +13,24 @@ _tot_db = call compile format["%1", _tot_dbString];
 //split out the main tables from the db array
 TOT_playerData = _tot_db select 0;
 publicVariable "TOT_playerData";
+
 TOT_vehicleData = _tot_db select 1;
 publicVariable "TOT_vehicleData";
+
 TOT_goodsData = _tot_db select 2;
 publicVariable "TOT_goodsData";
+
 TOT_objectData = _tot_db select 3;
 publicVariable "TOT_objectData";
-TOT_industryData = _tot_db select 4;
+
+TOT_R3FstoredData = _tot_db select 4;
+publicVariable "TOT_R3FstoredData";
+
+TOT_industryData = _tot_db select 5;
+publicVariable "TOT_industryData";
+
+
+
 
 //set up individual players
 {
@@ -113,15 +124,60 @@ _xgoods addAction["Read Shipping Label", "scripts\tot\readBoxes.sqf"];
 //add addaction designate pickup
 _xgoods addAction["Designate for Pickup", "scripts\tot\ai\designatePickup.sqf"];
 
+
+
+//rename the R3F table data entry name, if applicable -- cycle through each entry in the storedData table and replace any instance of itself with its new name
+_findString = _goods
+	{
+	_contentPath = [TOT_R3FstoredData, _findString] BIS_fnc_findNestedElement;
+	if (count _contentPath > 0) then {
+										[_x, _contentPath, _xgoods] BIS_fnc_setNestedElement;
+								};
+	} forEach TOT_R3FstoredData;
+	
+	
 //rename the old entry in the db to the new goods name
 _x set[0, _xgoods];
-
 } forEach TOT_goodsData;
 
 
 //set up objects
 {
+_obj = _x select 0;
+_objData = _x select 1;
+
+_useType = _objData select 0;
+_pos = _objData select 1;
+_dir = _objData select 2;
+
+_xobj = createVehicle[_useType, _pos,[], 0,"NONE"];
+_xobj setDir _dir;
+
+
+//rename the R3F table data entry name, if applicable -- cycle through each entry in the storedData table and replace any instance of itself with its new name
+_findString = _obj
+	{
+	_contentPath = [TOT_R3FstoredData, _findString] BIS_fnc_findNestedElement;
+	if (count _contentPath > 0) then {
+										[_x, _contentPath, _xobj] BIS_fnc_setNestedElement;
+								};
+	} forEach TOT_R3FstoredData;
+
+//rename the old entry in the db to the new goods name
+_x set[0, _xobj];
+	
 } forEach TOT_objectData;
+
+//set up R3F contents
+
+{
+_obj = _x select 0;
+_objData = _x select 1;
+
+//write R3F_LOG_objets_charges entry to object, to be read on player access - should now contain non sanitised versions of both container and contents as written by previous loops
+_obj setVariable["R3F_LOG_objets_charges", _objData];
+
+} forEach TOT_R3FstoredData;
 
 //set up industries
 {

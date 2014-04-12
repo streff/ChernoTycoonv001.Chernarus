@@ -78,40 +78,60 @@ _goodsData set[3, _goodsInfo];
 _objName = _x select 0;
 _objData = _x select 1;
 
-//get current position direction contents
+//get current position direction
 _pos = getPos _objName;
 _dir = getDir _objName;
-_objets_charges = "";
-
-if (!isNil{_objName getVariable "R3F_LOG_objets_charges"}) then {
-_objets_charges = _objName getVariable "R3F_LOG_objets_charges";
-};
 
 //write current value to liveDB array
 _objData set[2, _pos];
 _objData set[3, _dir];
-_objData set[4, _objets_charges];
-
 
 } forEach TOT_objectData;
+
+
+//get R3F container data - table populated by pushArray when item is inserted into R3F_Logistics on-item contents table
+//todo- remove from table when container is empty - either immediate remove when player removes from container
+//or garbage collection style 'when contents < 1 delete this entry'
+
+{
+
+_contName = _x select 0;
+_contData = _x select 1;
+
+//get current load
+_objets_charges = _contName getVariable "R3F_LOG_objets_charges";
+
+
+//write current value to liveDB array
+_contData set[0, _objets_charges];
+
+} forEach TOT_R3FstoredData;
+
 
 //get industry data - current stock levels of all industries in game------------------------------------------
 
 
 //arrange 4 tables into main table and write to db
-_tot_db = [TOT_playerData, TOT_vehicleData, TOT_goodsData, TOT_objectData, TOT_industryData];
+_tot_db = [TOT_playerData, TOT_vehicleData, TOT_goodsData, TOT_objectData, TOT_R3FstoredData, TOT_industryData];
 
-//copy the live db before sanitising and writing to file - object and vehicle names need turned to strings
+//copy the live db before sanitising and writing to file - object and vehicle names need turned to strings for db write or they error on db read - spaces and shit
 _tot_write_db = +_tot_db;
 
-//sanitise goods and object names
+//sanitise goods names
 {
 _x set[0, str (_x select 0)];
 } forEach (_tot_write_db select 2);
-
+//sanitise objects names
 {
 _x set[0, str (_x select 0)];
 } forEach (_tot_write_db select 3);
+//sanitise r3f object names
+{
+_x set[0, str (_x select 0)];
+	{
+		_x set[0, str (_x select 0)];
+	} forEach (_x select 1);
+} forEach (_tot_write_db select 4);
 
 //write to file
 diag_log "++TOT DB OUTPUT START++";

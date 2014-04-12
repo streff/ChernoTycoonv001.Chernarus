@@ -72,6 +72,10 @@ else
 					_objets_charges = _objets_charges + [_objet];
 					_transporteur setVariable ["R3F_LOG_objets_charges", _objets_charges, true];
 					
+					//copy details of loaded object and container to live db table
+					[TOT_R3FstoredData, [_transporteur, _objets_charges]] call BIS_fnc_arrayPush;
+					publicVariable "TOT_R3FstoredData";
+					
 					player globalChat STR_R3F_LOG_action_charger_selection_en_cours;
 					
 					sleep 2;
