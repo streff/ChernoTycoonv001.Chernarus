@@ -835,6 +835,7 @@ class Mission
 				class Item0
 				{
 					position[]={1868.5304,4.9302878,2120.5657};
+					azimut=-122.10008;
 					id=267;
 					side="GUER";
 					vehicle="Pilot_Random_H_DLC1";

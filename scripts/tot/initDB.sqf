@@ -129,9 +129,9 @@ _xgoods addAction["Designate for Pickup", "scripts\tot\ai\designatePickup.sqf"];
 //rename the R3F table data entry name, if applicable -- cycle through each entry in the storedData table and replace any instance of itself with its new name
 _findString = _goods;
 	{
-	_contentPath = [TOT_R3FstoredData, _findString] BIS_fnc_findNestedElement;
+	_contentPath = [TOT_R3FstoredData, _findString] call BIS_fnc_findNestedElement;
 	if (count _contentPath > 0) then {
-										[_x, _contentPath, _xgoods] BIS_fnc_setNestedElement;
+										[_x, _contentPath, _xgoods] call BIS_fnc_setNestedElement;
 								};
 	} forEach TOT_R3FstoredData;
 	
@@ -157,9 +157,9 @@ _xobj setDir _dir;
 //rename the R3F table data entry name, if applicable -- cycle through each entry in the storedData table and replace any instance of itself with its new name
 _findString = _obj;
 	{
-	_contentPath = [TOT_R3FstoredData, _findString] BIS_fnc_findNestedElement;
+	_contentPath = [TOT_R3FstoredData, _findString] call BIS_fnc_findNestedElement;
 	if (count _contentPath > 0) then {
-										[_x, _contentPath, _xobj] BIS_fnc_setNestedElement;
+										[_x, _contentPath, _xobj] call BIS_fnc_setNestedElement;
 								};
 	} forEach TOT_R3FstoredData;
 

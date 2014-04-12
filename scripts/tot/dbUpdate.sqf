@@ -96,14 +96,17 @@ _objData set[3, _dir];
 {
 
 _contName = _x select 0;
-_contData = _x select 1;
 
 //get current load
 _objets_charges = _contName getVariable "R3F_LOG_objets_charges";
 
+//convert contents to strings for live db storage -- not working
+{
+_x = str _x;
+} forEach _objets_charges;
 
 //write current value to liveDB array
-_contData set[0, _objets_charges];
+_x set[1, _objets_charges];
 
 } forEach TOT_R3FstoredData;
 
@@ -121,16 +124,16 @@ _tot_write_db = +_tot_db;
 {
 _x set[0, str (_x select 0)];
 } forEach (_tot_write_db select 2);
+
 //sanitise objects names
 {
 _x set[0, str (_x select 0)];
 } forEach (_tot_write_db select 3);
+
 //sanitise r3f object names
 {
 _x set[0, str (_x select 0)];
-	{
-		_x set[0, str (_x select 0)];
-	} forEach (_x select 1);
+
 } forEach (_tot_write_db select 4);
 
 //write to file
