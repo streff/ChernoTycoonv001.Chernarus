@@ -127,7 +127,7 @@ _xgoods addAction["Designate for Pickup", "scripts\tot\ai\designatePickup.sqf"];
 
 
 //rename the R3F table data entry name, if applicable -- cycle through each entry in the storedData table and replace any instance of itself with its new name
-_findString = _goods
+_findString = _goods;
 	{
 	_contentPath = [TOT_R3FstoredData, _findString] BIS_fnc_findNestedElement;
 	if (count _contentPath > 0) then {
@@ -155,7 +155,7 @@ _xobj setDir _dir;
 
 
 //rename the R3F table data entry name, if applicable -- cycle through each entry in the storedData table and replace any instance of itself with its new name
-_findString = _obj
+_findString = _obj;
 	{
 	_contentPath = [TOT_R3FstoredData, _findString] BIS_fnc_findNestedElement;
 	if (count _contentPath > 0) then {
