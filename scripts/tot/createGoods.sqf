@@ -39,32 +39,15 @@ _price = (_priceOut * _capacity);
 
 _bayPos = getMarkerPos _loadbay;
 
-
-
 //original prices as passed by the production script
 _basePriceOut = _this select 3 select 4; //passed as integer for single unit of goods
-
-//test
-//if (isServer) then{ 
-//_producer globalchat format[" owner: %1 ", _owner];
-//};
-
 
 _newPrice = _basePriceOut;
 //_producer globalchat format[" cg baseprice: %1 ", _basePriceOut];
 
-//singleplayer version
-//if (!isDedicated) then {
-//ditch old actions to remove prices
-// Remove all except first actions from the unit
-//	_action =_producer addAction["foo", "foo.sqf"];
-//	while {_action >= 1} do	{
-//	_producer removeAction _action;
-//	_action = _action - 1;
-//	};
-//} else {
+
 [[_producer], "TOT_fnc_MPRemoveaction",false, true] call BIS_fnc_MP; 
-//};
+
 
 if (_capacity <= _available) then {
 
@@ -78,15 +61,22 @@ if (_capacity <= _available) then {
 						_veh = createVehicle[_useType, _bayPos,[], 0,"NONE"];
 						//leave in for future expansion - ability to produce and recieve more than one kind of goods - has to be a string for delivery comparison though
 						_produceSubType = _produceType select 0;
-						_veh setVariable ["_goodsInfo", [_producer, _produceSubType, _owner, _capacity], true];
+						_goodsInfo = [_producer, _produceSubType, _owner, _capacity];
+						_veh setVariable ["_goodsInfo", _goodsInfo, true];
 						
 						//add addaction for player to be able to read box tags
 						_veh addAction["Read Shipping Label", "scripts\tot\readBoxes.sqf"];
-						[[_producer, "scripts\tot\readBoxes.sqf", "Read Shipping Label"], "TOT_fnc_MPAddactionNoParam", nil, true, true] spawn BIS_fnc_MP;
+						
 						
 						//add addaction designate pickup
 						_veh addAction["Designate for Pickup", "scripts\tot\ai\designatePickup.sqf"];
-						[[_producer, "scripts\tot\tellStock.sqf", "Current Stock"], "TOT_fnc_MPAddactionNoParam", nil, true, true] spawn BIS_fnc_MP;
+						
+						//db entry - create data
+						_pos = getPos _veh;
+						_dir = getDir _veh;
+						_xvehData = [_useType, _pos, _dir, _goodsInfo];
+						[TOT_goodsData, [_veh, _xvehData]] call BIS_fnc_arrayPush;
+						publicVariable "TOT_vehicleData";
 						
 						
 						//_producer globalchat format ["Loading %1 of %2 for %3", _useType, _produceType, _owner];	//tell me whats going on

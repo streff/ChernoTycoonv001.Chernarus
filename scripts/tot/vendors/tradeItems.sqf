@@ -22,6 +22,12 @@ _spawnLoc = format["%1_spawn", _vendor];
 
 _xveh = _vehicle createVehicle (getMarkerPos _spawnLoc);
 
+						//db entry - create data
+						_pos = getPos _xveh;
+						_dir = getDir _xveh;
+						_xvehData = [_vehicle, _pos, _dir];
+						[TOT_objectData, [_xveh, _xvehData]] call BIS_fnc_arrayPush;
+						publicVariable "TOT_objectData";
 
 _vendor globalChat "Thank You.";
 

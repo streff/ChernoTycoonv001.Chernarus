@@ -1,5 +1,6 @@
 //loop to capture updates to player global variables in db array
 //will gather individual player variables (cash/bank balance, 
+//todo: make all this into function calls for performance and ease of conversion to proper db in future
 
 while {true} do {
 
@@ -27,7 +28,8 @@ _x select 1 set[3, _dir];
 
 }forEach TOT_playerData;
 
-//get vehicles
+//get vehicles---------------------------------------------------------------------------------------------------------------
+//todo: check if vehicle is still alive and remove from the db
 {
 _veh = _x select 0;
 _vehName = "";
@@ -51,16 +53,96 @@ _vehData set[6, _owner];
 
 } forEach TOT_vehicleData;
 
-//get object data - bought items and cargo
+//get goods data - cargo ------------------------------------------------------------------------------------
+//todo: check if goods have been traded in/deleted and remove from db
+{
+_goodsName = _x select 0;
+_goodsData = _x select 1;
 
-//get industry data - current stock levels of all industries in game
+//get current position direction goodsinfo
+_pos = getPos _goodsName;
+_dir = getDir _goodsName;
+_goodsInfo = _goodsName getVariable "_goodsInfo";
 
-_tot_db = [TOT_playerData, TOT_vehicleData, TOT_objectData, TOT_industryData];
+//write current value to liveDB array
+_goodsData set[1, _pos];
+_goodsData set[2, _dir];
+_goodsData set[3, _goodsInfo];
+
+} forEach TOT_goodsData;
+
+//get object data - bought object ------------------------------------------------------------------------------------
+
+{
+
+_objName = _x select 0;
+_objData = _x select 1;
+
+//get current position direction
+_pos = getPos _objName;
+_dir = getDir _objName;
+
+//write current value to liveDB array
+_objData set[1, _pos];
+_objData set[2, _dir];
+
+} forEach TOT_objectData;
+
+
+//get R3F container data - table populated by pushArray when item is inserted into R3F_Logistics on-item contents table
+//todo- remove from table when container is empty - either immediate remove when player removes from container
+//or garbage collection style 'when contents < 1 delete this entry'
+
+{
+
+_contName = _x select 0;
+
+//get current load
+_current_load = [];
+_objets_charges = _contName getVariable "R3F_LOG_objets_charges";
+_current_load = +_objets_charges;
+
+//convert contents to strings for live db storage -- not working
+{
+_current_load set [_forEachIndex, str _x];
+} forEach _current_load;
+
+//write current value to liveDB array
+_x set[1, _current_load];
+
+} forEach TOT_R3FstoredData;
+
+
+//get industry data - current stock levels of all industries in game------------------------------------------
+
+
+//arrange 4 tables into main table and write to db
+_tot_db = [TOT_playerData, TOT_vehicleData, TOT_goodsData, TOT_objectData, TOT_R3FstoredData, TOT_industryData];
+
+//copy the live db before sanitising and writing to file - object and vehicle names need turned to strings for db write or they error on db read - spaces and shit
+_tot_write_db = +_tot_db;
+
+//sanitise goods names
+{
+_x set[0, str (_x select 0)];
+} forEach (_tot_write_db select 2);
+
+//sanitise objects names
+{
+_x set[0, str (_x select 0)];
+} forEach (_tot_write_db select 3);
+
+//sanitise r3f object names
+{
+_x set[0, str (_x select 0)];
+
+} forEach (_tot_write_db select 4);
 
 //write to file
 diag_log "++TOT DB OUTPUT START++";
-diag_log _tot_db;
+diag_log _tot_write_db;
 diag_log "++TOT DB OUTPUT END++";
+
 
 //sleep timer
 sleep 60;
