@@ -115,7 +115,21 @@ _x set[1, _current_load];
 
 //get industry data - current stock levels of all industries in game------------------------------------------
 
+/*
+//publish the contents of all tables to everyone so new additions dont overwrite the old tables
 
+publicVariable "TOT_playerData";
+
+publicVariable "TOT_vehicleData";
+
+publicVariable "TOT_goodsData";
+
+publicVariable "TOT_objectData";
+
+publicVariable "TOT_R3FstoredData";
+
+publicVariable "TOT_industryData";
+*/
 //arrange 4 tables into main table and write to db
 _tot_db = [TOT_playerData, TOT_vehicleData, TOT_goodsData, TOT_objectData, TOT_R3FstoredData, TOT_industryData];
 
@@ -140,8 +154,22 @@ _x set[0, str (_x select 0)];
 
 //write to file
 diag_log "++TOT DB OUTPUT START++";
-diag_log _tot_write_db;
+{diag_log (_x);} forEach (_tot_write_db select 0);
+{diag_log (_x);} forEach (_tot_write_db select 1);
+{diag_log (_x);} forEach (_tot_write_db select 2);
+{diag_log (_x);} forEach (_tot_write_db select 3);
+{diag_log (_x);} forEach (_tot_write_db select 4);
+{diag_log (_x);} forEach (_tot_write_db select 5);
 diag_log "++TOT DB OUTPUT END++";
+
+/*
+diag_log (_tot_write_db select 1);
+diag_log (_tot_write_db select 2);
+diag_log (_tot_write_db select 3);
+diag_log (_tot_write_db select 4);
+diag_log (_tot_write_db select 5);
+*/
+
 
 
 //sleep timer

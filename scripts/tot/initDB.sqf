@@ -180,9 +180,17 @@ _obj setVariable["R3F_LOG_objets_charges", _objData];
 } forEach TOT_R3FstoredData;
 
 //set up industries
+/*
 {
-} forEach TOT_industryData;
+_producer = _x select 0;
+_industryVars = _x select 1;
 
+_initVars = format ["TOT_" + str _producer + "_industryVars", _industryVars];
+missionNamespace setVariable [_initVars, _industryVars];
+publicVariable _initVars;
+
+} forEach TOT_industryData;
+*/
 //initiate db update capture script
 execVM "scripts\tot\dbUpdate.sqf";
 
