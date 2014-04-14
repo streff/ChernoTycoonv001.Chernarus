@@ -835,7 +835,7 @@ class Mission
 				class Item0
 				{
 					position[]={1867.5938,4.9084554,2119.8401};
-					azimut=-68.779236;
+					azimut=202.13821;
 					id=267;
 					side="GUER";
 					vehicle="Pilot_Random_H_DLC1";
@@ -4202,7 +4202,7 @@ class Mission
 		};
 		class Item16
 		{
-			position[]={1860.943,5.5451446,2123.5347};
+			position[]={1862.2483,8.1500816,2122.5779};
 			name="fisheryKamenka_load";
 			type="Empty";
 		};
@@ -4393,7 +4393,7 @@ class Mission
 		};
 		class Item47
 		{
-			position[]={1865.1069,5.2064266,2121.8462};
+			position[]={1865.2725,5.175746,2121.5706};
 			name="itemVendorVysota_spawn";
 			type="Empty";
 			angle=-10.737834;

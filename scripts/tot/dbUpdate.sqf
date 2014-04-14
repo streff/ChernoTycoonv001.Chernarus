@@ -152,17 +152,57 @@ _x set[0, str (_x select 0)];
 
 } forEach (_tot_write_db select 4);
 
+//set file formatting markers
+_file_txt_open = "[";
+_file_txt_close = "]";
+_file_txt_delimit = ",";
+
 //write to file
+
 diag_log "++TOT DB OUTPUT START++";
+diag_log _file_txt_open;
+diag_log _file_txt_open;
 {diag_log (_x);} forEach (_tot_write_db select 0);
+diag_log _file_txt_close;
+diag_log _file_txt_delimit;
+diag_log _file_txt_open;
 {diag_log (_x);} forEach (_tot_write_db select 1);
+diag_log _file_txt_close;
+diag_log _file_txt_delimit;
+diag_log _file_txt_open;
 {diag_log (_x);} forEach (_tot_write_db select 2);
+diag_log _file_txt_close;
+diag_log _file_txt_delimit;
+diag_log _file_txt_open;
 {diag_log (_x);} forEach (_tot_write_db select 3);
+diag_log _file_txt_close;
+diag_log _file_txt_delimit;
+diag_log _file_txt_open;
 {diag_log (_x);} forEach (_tot_write_db select 4);
+diag_log _file_txt_close;
+diag_log _file_txt_delimit;
+diag_log _file_txt_open;
+{diag_log (_x);} forEach (_tot_write_db select 5);
+diag_log _file_txt_close;
+diag_log _file_txt_close;
+
+/*
+diag_log "++TOT DB OUTPUT START++";
+diag_log "++TOT_playerData++";
+{diag_log (_x);} forEach (_tot_write_db select 0);
+diag_log "++TOT_vehicleData++";
+{diag_log (_x);} forEach (_tot_write_db select 1);
+diag_log "++TOT_goodsData++";
+{diag_log (_x);} forEach (_tot_write_db select 2);
+diag_log "++TOT_objectData++";
+{diag_log (_x);} forEach (_tot_write_db select 3);
+diag_log "++TOT_R3FstoredData++";
+{diag_log (_x);} forEach (_tot_write_db select 4);
+diag_log "++TOT_industryData++";
 {diag_log (_x);} forEach (_tot_write_db select 5);
 diag_log "++TOT DB OUTPUT END++";
 
-/*
+
 diag_log (_tot_write_db select 1);
 diag_log (_tot_write_db select 2);
 diag_log (_tot_write_db select 3);
