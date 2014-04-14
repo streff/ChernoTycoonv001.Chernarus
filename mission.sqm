@@ -317,7 +317,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={1869.1334,5.1275353,2123.73};
+					position[]={1869.5592,5.104846,2123.73};
 					azimut=143.91901;
 					id=52;
 					side="CIV";
@@ -738,7 +738,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={4781.5874,8.8364868,2548.8872};
+					position[]={1866.8149,5.2077065,2123.5256};
 					azimut=-165.92101;
 					id=259;
 					side="CIV";
@@ -834,8 +834,8 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={4746.4028,8.8379059,2569.0522};
-					azimut=-122.10008;
+					position[]={1867.5938,4.9084554,2119.8401};
+					azimut=-68.779236;
 					id=267;
 					side="GUER";
 					vehicle="Pilot_Random_H_DLC1";
@@ -4393,7 +4393,7 @@ class Mission
 		};
 		class Item47
 		{
-			position[]={4778.0586,8.977643,2545.7649};
+			position[]={1865.1069,5.2064266,2121.8462};
 			name="itemVendorVysota_spawn";
 			type="Empty";
 			angle=-10.737834;

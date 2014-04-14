@@ -131,7 +131,7 @@ _findString = _goods;
 	{
 	_contentPath = [TOT_R3FstoredData, _findString] call BIS_fnc_findNestedElement;
 	if (count _contentPath > 0) then {
-										[_x, _contentPath, _xgoods] call BIS_fnc_setNestedElement;
+										[TOT_R3FstoredData, _contentPath, _xgoods] call BIS_fnc_setNestedElement;
 								};
 	} forEach TOT_R3FstoredData;
 	
@@ -159,7 +159,7 @@ _findString = _obj;
 	{
 	_contentPath = [TOT_R3FstoredData, _findString] call BIS_fnc_findNestedElement;
 	if (count _contentPath > 0) then {
-										[_x, _contentPath, _xobj] call BIS_fnc_setNestedElement;
+										[TOT_R3FstoredData, _contentPath, _xobj] call BIS_fnc_setNestedElement;
 								};
 	} forEach TOT_R3FstoredData;
 

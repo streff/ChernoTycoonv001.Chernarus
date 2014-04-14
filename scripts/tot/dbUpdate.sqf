@@ -83,8 +83,8 @@ _pos = getPos _objName;
 _dir = getDir _objName;
 
 //write current value to liveDB array
-_objData set[2, _pos];
-_objData set[3, _dir];
+_objData set[1, _pos];
+_objData set[2, _dir];
 
 } forEach TOT_objectData;
 
@@ -98,15 +98,17 @@ _objData set[3, _dir];
 _contName = _x select 0;
 
 //get current load
+_current_load = [];
 _objets_charges = _contName getVariable "R3F_LOG_objets_charges";
+_current_load = +_objets_charges;
 
 //convert contents to strings for live db storage -- not working
 {
-_x = str _x;
-} forEach _objets_charges;
+_current_load set [_forEachIndex, str _x];
+} forEach _current_load;
 
 //write current value to liveDB array
-_x set[1, _objets_charges];
+_x set[1, _current_load];
 
 } forEach TOT_R3FstoredData;
 
