@@ -44,6 +44,20 @@ else
 		
 		detach _objet_a_decharger;
 		
+		//remove from TOT_R3FstoredData table
+		if (count TOT_R3FstoredData > 0) then{
+					{
+					if (_x find _transporteur > -1) then {
+					
+										//if found..
+										TOT_R3FstoredData = [TOT_R3FstoredData, _forEachIndex] call BIS_fnc_removeIndex;
+								
+					};
+					} forEach TOT_R3FstoredData;
+					};
+					[TOT_R3FstoredData, [_transporteur, _objets_charges]] call BIS_fnc_arrayPush;
+					publicVariable "TOT_R3FstoredData";
+		
 		if ({_objet_a_decharger isKindOf _x} count R3F_LOG_CFG_objets_deplacables > 0) then
 		{
 			[_objet_a_decharger] execVM "R3F_ARTY_AND_LOG\R3F_LOG\objet_deplacable\deplacer.sqf";
