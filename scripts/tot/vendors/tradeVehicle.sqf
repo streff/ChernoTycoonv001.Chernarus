@@ -42,7 +42,7 @@ _varName = format["Vehicle_%1", _vehNumber];
 _xveh setVehicleVarName _varName;
 _xveh Call Compile Format ["%1=_this ; PublicVariable ""%1""", _varName];
 
-[TOT_vehicleData, [_varName, _xvehData]] call BIS_fnc_arrayPush;
+[TOT_vehicleData, [_xveh, _xvehData]] call BIS_fnc_arrayPush;
 publicVariable "TOT_vehicleData";
 
 _vendor globalChat "Thank You.";

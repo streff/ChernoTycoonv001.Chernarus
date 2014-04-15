@@ -121,7 +121,9 @@ _acceptsGoods = _industryVars select 10; //goods accepted
 				_reciever globalchat format["Paid %1", _value];
 				deleteVehicle _x;
 
-				
+				[_x, TOT_goodsData] call TOT_fnc_tableRemove;
+					
+
 			} else {_reciever globalchat "I don't take those goods."}; //end of acceptsType check
 			
 		} else {_reciever globalchat "I don't take my own goods."}; //end of 'same producer' check
