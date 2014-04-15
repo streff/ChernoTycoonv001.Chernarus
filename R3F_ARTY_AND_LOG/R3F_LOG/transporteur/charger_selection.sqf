@@ -73,6 +73,17 @@ else
 					_transporteur setVariable ["R3F_LOG_objets_charges", _objets_charges, true];
 					
 					//copy details of loaded object and container to live db table
+					//check for duplicate entry if R3F table already has contents - if no contents in array findNested will error
+					if (count TOT_R3FstoredData > 0) then{
+					{
+					if (_x find _transporteur > -1) then {
+					
+										//if found..
+										TOT_R3FstoredData = [TOT_R3FstoredData, _forEachIndex] call BIS_fnc_removeIndex;
+								
+					};
+					} forEach TOT_R3FstoredData;
+					};
 					[TOT_R3FstoredData, [_transporteur, _objets_charges]] call BIS_fnc_arrayPush;
 					publicVariable "TOT_R3FstoredData";
 					

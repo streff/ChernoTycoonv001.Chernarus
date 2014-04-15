@@ -115,7 +115,7 @@ _x set[1, _current_load];
 
 //get industry data - current stock levels of all industries in game------------------------------------------
 
-/*
+
 //publish the contents of all tables to everyone so new additions dont overwrite the old tables
 
 publicVariable "TOT_playerData";
@@ -129,7 +129,7 @@ publicVariable "TOT_objectData";
 publicVariable "TOT_R3FstoredData";
 
 publicVariable "TOT_industryData";
-*/
+
 //arrange 4 tables into main table and write to db
 _tot_db = [TOT_playerData, TOT_vehicleData, TOT_goodsData, TOT_objectData, TOT_R3FstoredData, TOT_industryData];
 
