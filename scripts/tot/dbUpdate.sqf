@@ -29,12 +29,17 @@ _x select 1 set[3, _dir];
 }forEach TOT_playerData;
 
 //get vehicles---------------------------------------------------------------------------------------------------------------
-//todo: check if vehicle is still alive and remove from the db
 {
 _veh = _x select 0;
 _vehName = "";
 call compile format["_vehName = %1", _veh];
 _vehData = _x select 1;
+
+//remove vehicle from db if destroyed
+if !(alive _veh) then {
+						TOT_vehicleData = [TOT_vehicleData, _forEachIndex] call BIS_fnc_removeIndex;			
+					} else {
+
 
 //get current fuel level position direction lock status and owner
 _fuel = fuel _vehName;
@@ -49,15 +54,18 @@ _vehData set[3, _pos];
 _vehData set[4, _dir];
 _vehData set[5, _locked];
 _vehData set[6, _owner];
-
+};
 
 } forEach TOT_vehicleData;
 
 //get goods data - cargo ------------------------------------------------------------------------------------
-//todo: check if goods have been traded in/deleted and remove from db
 {
 _goodsName = _x select 0;
 _goodsData = _x select 1;
+
+if !(alive _goodsName) then {
+						TOT_goodsData = [TOT_goodsData, _forEachIndex] call BIS_fnc_removeIndex;			
+					} else {
 
 //get current position direction goodsinfo
 _pos = getPos _goodsName;
@@ -68,15 +76,18 @@ _goodsInfo = _goodsName getVariable "_goodsInfo";
 _goodsData set[1, _pos];
 _goodsData set[2, _dir];
 _goodsData set[3, _goodsInfo];
-
+};
 } forEach TOT_goodsData;
 
 //get object data - bought object ------------------------------------------------------------------------------------
 
 {
-
 _objName = _x select 0;
 _objData = _x select 1;
+
+if !(alive _objName) then {
+						TOT_objectData = [TOT_objectData, _forEachIndex] call BIS_fnc_removeIndex;			
+					} else {
 
 //get current position direction
 _pos = getPos _objName;
@@ -86,6 +97,8 @@ _dir = getDir _objName;
 _objData set[1, _pos];
 _objData set[2, _dir];
 
+};
+
 } forEach TOT_objectData;
 
 
@@ -94,7 +107,6 @@ _objData set[2, _dir];
 //or garbage collection style 'when contents < 1 delete this entry'
 
 {
-
 _contName = _x select 0;
 
 //get current load
@@ -114,7 +126,30 @@ _x set[1, _current_load];
 
 
 //get industry data - current stock levels of all industries in game------------------------------------------
+{
+_industry = _x select 0;
+_industryVars = [];
+//get current values
+_initVars = format ["TOT_" + str _industry + "_industryVars"];
+_current_values = missionNamespace getVariable [_initVars, _industryVars];
+//write current value to liveDB array
+_x set[1, _current_values];
 
+} forEach TOT_industryData;
+
+//publish the contents of all tables to everyone so new additions dont overwrite the old tables
+
+publicVariable "TOT_playerData";
+
+publicVariable "TOT_vehicleData";
+
+publicVariable "TOT_goodsData";
+
+publicVariable "TOT_objectData";
+
+publicVariable "TOT_R3FstoredData";
+
+publicVariable "TOT_industryData";
 
 //arrange 4 tables into main table and write to db
 _tot_db = [TOT_playerData, TOT_vehicleData, TOT_goodsData, TOT_objectData, TOT_R3FstoredData, TOT_industryData];
@@ -138,11 +173,26 @@ _x set[0, str (_x select 0)];
 
 } forEach (_tot_write_db select 4);
 
+//set file formatting markers
+_file_txt_open = "[";
+_file_txt_close = "]";
+_file_txt_delimit = ",";
+
 //write to file
 diag_log "++TOT DB OUTPUT START++";
-diag_log _tot_write_db;
+diag_log "++TOT_playerData++";
+{diag_log (_x);} forEach (_tot_write_db select 0);
+diag_log "++TOT_vehicleData++";
+{diag_log (_x);} forEach (_tot_write_db select 1);
+diag_log "++TOT_goodsData++";
+{diag_log (_x);} forEach (_tot_write_db select 2);
+diag_log "++TOT_objectData++";
+{diag_log (_x);} forEach (_tot_write_db select 3);
+diag_log "++TOT_R3FstoredData++";
+{diag_log (_x);} forEach (_tot_write_db select 4);
+diag_log "++TOT_industryData++";
+{diag_log (_x);} forEach (_tot_write_db select 5);
 diag_log "++TOT DB OUTPUT END++";
-
 
 //sleep timer
 sleep 60;

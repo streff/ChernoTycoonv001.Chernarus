@@ -24,6 +24,7 @@ class CfgFunctions
 			class MPAddactionParamCond 		{description="Add multiplayer addaction with some parameters"; file="scripts\tot\functions\fn_MPAddactionParamCond.sqf";};
 			class MPAddactionNoParam	{description="Add multiplayer addaction with no parameters"; file="scripts\tot\functions\fn_MPAddactionNoParam.sqf";};
 			class MPRemoveaction		{description="Remove all addactions from unit"; file="scripts\tot\functions\fn_MPRemoveaction.sqf";};
+			class tableRemove		{description="Remove item from table"; file="scripts\tot\functions\fn_tableRemove.sqf";};
 		};
 	};
 	

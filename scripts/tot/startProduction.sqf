@@ -30,6 +30,10 @@ _sprice = _priceOut * 5;
 _mprice = _priceOut * 50;
 _lprice = _priceOut * 100;
 
+//insert industry into livedb
+//db entry - create data
+[TOT_industryData, [_producer, _industryVars]] call BIS_fnc_arrayPush;
+publicVariable "TOT_industryData";
 
 //sleep for a bit
 sleep random 3;

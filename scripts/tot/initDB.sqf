@@ -1,5 +1,5 @@
 //read values from db and create global tables
-//tables: TOT_playerData, TOT_vehicleData, TOT_objectData, TOT_industryData
+//tables: TOT_playerData, TOT_vehicleData, , TOT_goodsData, TOT_objectData, TOT_R3FstoredData, TOT_industryData
 
 //set to run on SERVER only
 if (isDedicated || isServer) then {
@@ -8,29 +8,26 @@ if (isDedicated || isServer) then {
 _tot_dbString = loadFile "\db\tot_db.txt";
 //process file into an array from a string
 _tot_db = call compile format["%1", _tot_dbString];
-
+if (count _tot_db < 6) exitWith {hint "db error";};
 
 //split out the main tables from the db array
 TOT_playerData = _tot_db select 0;
-publicVariable "TOT_playerData";
+//publicVariable "TOT_playerData";
 
 TOT_vehicleData = _tot_db select 1;
-publicVariable "TOT_vehicleData";
+//publicVariable "TOT_vehicleData";
 
 TOT_goodsData = _tot_db select 2;
-publicVariable "TOT_goodsData";
+//publicVariable "TOT_goodsData";
 
 TOT_objectData = _tot_db select 3;
-publicVariable "TOT_objectData";
+//publicVariable "TOT_objectData";
 
 TOT_R3FstoredData = _tot_db select 4;
-publicVariable "TOT_R3FstoredData";
+//publicVariable "TOT_R3FstoredData";
 
 TOT_industryData = _tot_db select 5;
-publicVariable "TOT_industryData";
-
-
-
+//publicVariable "TOT_industryData";
 
 //set up individual players
 {
@@ -180,7 +177,15 @@ _obj setVariable["R3F_LOG_objets_charges", _objData];
 } forEach TOT_R3FstoredData;
 
 //set up industries
+
 {
+_producer = _x select 0;
+_industryVars = _x select 1;
+
+_initVars = format ["TOT_" + str _producer + "_industryVars", _industryVars];
+missionNamespace setVariable [_initVars, _industryVars];
+publicVariable _initVars;
+
 } forEach TOT_industryData;
 
 //initiate db update capture script

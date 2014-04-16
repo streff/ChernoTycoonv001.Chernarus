@@ -9,18 +9,18 @@ _producer = _this select 0;
 _loadbay = _this select 1;
 _deliverbay = _this select 2;
 
-//farm specific fixed values
+//specific fixed values
 _boxTypes = ["Fort_Crate_wood", "CargoCont_Net1_H", "Land_Misc_Cargo1E_EP1"];
-_pricesOut = 140;
-_acceptsType = ["Fort_Crate_wood", "CargoCont_Net1_H", "Land_Misc_Cargo1E_EP1"];
-_pricesIn = 720;
+_priceOut = 140;
+_acceptsType = ["Land_Misc_Cargo1E_EP1", "CargoCont_Net1_H", "Fort_Crate_wood"];
+_priceIn = 720;
 _produceType = ["Stone"];
 _acceptsGoods = ["Tools"];
 _available = 6000;
 _maxAvailable = 12000;
 _materials = 0;
-_state = 1;
 _prodRate = 2.6;
+_state = 1;
 
 //write the initial values to missionNamespace global variable
 
