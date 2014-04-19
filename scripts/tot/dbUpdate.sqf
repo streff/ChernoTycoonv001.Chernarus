@@ -13,18 +13,24 @@ _cashlbl = format["TOT_%1_cashBalance", _playerName];
 _banklbl = format["TOT_%1_bankBalance", _playerName];
 _poslbl = format["TOT_%1_lastPos", _playerName];
 _dirlbl = format["TOT_%1_lastDir", _playerName];
+_stafflbl = format["TOT_%1_staff", _playerName];
+_vehIntlbl = format["TOT_%1_vehInt", _playerName];
 
 //get their details from global variables - current values
 _cash = missionNamespace getVariable _cashlbl;
 _bank = missionNamespace getVariable _banklbl;
 _pos = missionNamespace getVariable _poslbl;
 _dir = missionNamespace getVariable _dirlbl;
+_staff = missionNamespace getVariable _stafflbl;
+_vehInt = missionNamespace getVariable _vehIntlbl;
 
 //write current values to live db array
 _x select 1 set[0, _cash];
 _x select 1 set[1, _bank];
 _x select 1 set[2, _pos];
 _x select 1 set[3, _dir];
+_x select 1 set[4, _staff];
+_x select 1 set[5, _vehInt];
 
 }forEach TOT_playerData;
 

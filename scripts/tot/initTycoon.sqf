@@ -24,6 +24,10 @@ if (isNil (format["TOT_%1_cashBalance", _playerName])) then	{		//if no entry exi
 
 		//create Osmo trigger for repairs payment - dont bother storing anything in db for this
 		call compile format["TOT_%1_payOsmo = 0;", _playerName];
+		
+		//staff counter & vehicle iterator for naming
+		_staff = 0;
+		_vehInt = 0;
 
 		//get dir and pos, set tracker on both
 		_dir = getDir player;
@@ -39,14 +43,18 @@ if (isNil (format["TOT_%1_cashBalance", _playerName])) then	{		//if no entry exi
 		_banklbl = format["TOT_%1_bankBalance", _playerName];
 		_poslbl = format["TOT_%1_lastPos", _playerName];
 		_dirlbl = format["TOT_%1_lastDir", _playerName];
+		_stafflbl = format["TOT_%1_staff", _playerName];
+		_vehIntlbl = format["TOT_%1_vehInt", _playerName];
 		
 		missionNamespace setVariable[_cashlbl, _cash];
 		missionNamespace setVariable[_banklbl, _bank];
 		missionNamespace setVariable[_poslbl, _pos];
 		missionNamespace setVariable[_dirlbl, _dir];
+		missionNamespace setVariable[_stafflbl, _staff];
+		missionNamespace setVariable[_vehIntlbl, _vehInt];
 		
 		//add player details to global player db table and publish new version to all
-		call compile format["[TOT_playerData, [%1, [%2, %3, %4, %5]]] call BIS_fnc_arrayPush;", str _playerName, _cashlbl, _banklbl, _poslbl, _dirlbl];
+		call compile format["[TOT_playerData, [%1, [%2, %3, %4, %5, %6, %7]]] call BIS_fnc_arrayPush;", str _playerName, _cashlbl, _banklbl, _poslbl, _dirlbl, _stafflbl, _vehIntlbl];
 		publicVariable "TOT_playerData";
 		
 		//pass the labels to the tracker so you dont have to create them again, and start tracking position

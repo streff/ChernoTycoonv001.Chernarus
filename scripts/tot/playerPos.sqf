@@ -21,8 +21,8 @@ _dir = getDir _target;
 
 //set the vars and make public to server
 missionNamespace setVariable[_poslbl, _pos];
-publicVariable _poslbl;
+publicVariableServer _poslbl;
 missionNamespace setVariable[_dirlbl, _dir];
-publicVariable _dirlbl;
+publicVariableServer _dirlbl;
 
 }; // end tracking loop

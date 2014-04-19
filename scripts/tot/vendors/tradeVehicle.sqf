@@ -37,8 +37,9 @@ _fuel = fuel _xveh;
 _pos = getPos _xveh;
 _dir = getDir _xveh;
 _xvehData = [_vehicle, "", _fuel, _pos, _dir, _owner];
-_vehNumber = count TOT_vehicleData;
+_vehNumber = call compile format["TOT_%1_vehInt", _employer];
 _varName = format["Vehicle_%1", _vehNumber];
+call compile format["TOT_%1_vehInt = TOT_%1_vehInt + 1", _employer];
 _xveh setVehicleVarName _varName;
 _xveh Call Compile Format ["%1=_this ; PublicVariable ""%1""", _varName];
 

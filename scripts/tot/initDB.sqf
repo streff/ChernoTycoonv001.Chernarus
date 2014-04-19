@@ -39,6 +39,8 @@ _cash = _playerData select 0;
 _bank = _playerData select 1;
 _pos = _playerData select 2;
 _dir = _playerData select 3;
+_staff = _playerData select 4;
+_vehIterator = _playerData select 5;
 
 //create cash and bank balances
 call compile format["TOT_%1_cashBalance = %2;", _playerName, _cash];
@@ -82,12 +84,10 @@ _xveh lock _locked;
 
 
 //rename the vehicle to the db entry
-_vehNumber = _forEachIndex;
-_varName = format["Vehicle_%1", _vehNumber];
-_xveh setVehicleVarName _varName;
-_xveh Call Compile Format ["%1=_this ; PublicVariable ""%1""", _varName];
+_xveh setVehicleVarName _veh;
+_xveh Call Compile Format ["%1=_this ; PublicVariable ""%1""", _veh];
 
-//ifHeli hack - if heli set heli init, if not set stock and passed init
+//"ifHeli" hack - if heli set heli init, if not set stock and passed init
 _isHeli = _xveh isKindOf "Helicopter";
 _fullInit = "";
 if (_isHeli) then {
@@ -120,7 +120,6 @@ _xgoods addAction["Read Shipping Label", "scripts\tot\readBoxes.sqf"];
 						
 //add addaction designate pickup
 _xgoods addAction["Designate for Pickup", "scripts\tot\ai\designatePickup.sqf"];
-
 
 
 //rename the R3F table data entry name, if applicable -- cycle through each entry in the storedData table and replace any instance of itself with its new name
