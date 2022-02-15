@@ -11,4 +11,4 @@ Kronzky's Urban Patrol script - http://kronzky.info/ups/
 [R3F] Arty & Logistics (Arty bit turned off) - http://www.armaholic.com/page.php?id=9285
 ...all butchered mercilessly for my own nefarious ends.
 Thanks and props to all the original authors,and other notable scriptwriters in the BI forums and Armaholic community
-who's work I have dismantled and reviewed in awe. 
+whos work I have dismantled and reviewed in awe. 
